@@ -1,0 +1,12 @@
+모바일 메뉴
+sub 
+sub sub
+sub sub sub
+
+모든 메뉴가 블록단위
+포지션 absolute >> relative;
+포지션 좌표 값 모두 초기화 top left right bottom
+여백 초기화 padding margin
+플로팅 해제 float:none;
+너비 >> 100% 높이 >> 45 ~ 50 모두 초기화 
+display 인라인 블록 초기화 블록으로 변환 
