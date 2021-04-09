@@ -187,11 +187,11 @@
 #wrap #main #section1 .wrap .gap .container {width:100%;height:100%;}
 #wrap #main #section1 .wrap .gap .container .slide-container {position:relative;width:100%;height:100%;}
 #wrap #main #section1 .wrap .gap .container .slide-container .slide-view {z-index:1;position:relative;width:100%;height:100%;overflow:hidden;}
-#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap {position:relative;left:0;width:500%;margin-left:-100%;height:100%;}
-#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide  {cursor:url(../img/icon-move-light.png),w-resize;position:relative;float:left;width:1903px;height:100%;background:url(../img/home-interior-design-slider-img01.jpg) no-repeat 50% 50%;background-size:cover;}
-#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide0 {background-image:url(../img/home-interior-design-slider-img01.jpg);}
-#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide1 {background-image:url(../img/home-interior-design-slider-img02.jpg);}
-#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide2 {background-image:url(../img/home-interior-design-slider-img03.jpg);}
+#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap {position:relative;width:100%;height:100%;}
+#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide  {z-index:1;position:absolute;top:0;left:0;width:1903px;height:100%;background:url(../img/home-interior-design-slider-img01.jpg) no-repeat 50% 50%;background-size:cover;cursor:url(../img/icon-move-light.png),w-resize}
+#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide0 {z-index:3;background-image:url(../img/home-interior-design-slider-img01.jpg);}
+#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide1 {z-index:2;background-image:url(../img/home-interior-design-slider-img02.jpg);}
+#wrap #main #section1 .wrap .gap .container .slide-container .slide-view .slide-wrap .slide2 {z-index:1;background-image:url(../img/home-interior-design-slider-img03.jpg);}
 
 
 /* 슬라이드 텍스트 박스 */
@@ -328,11 +328,13 @@
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap {margin:15px;height:296px;/* js 높이설정 */}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box {width:100%;height:100%;border:1px solid #ccc;box-sizing:border-box;background:rgba(255,255,255, 0);transition:all .6s;overflow:hidden;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide:hover .slide-gap .slide-content-box {width:100%;height:100%;border:1px solid transparent;box-shadow:1px 1px 12px rgba(0,0,0, .10), -1px -1px 12px rgba(0,0,0, .10);background:rgba(255,255,255, 1);}
+
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap {margin-top:30px;padding:42px 56px;transition:all .6s;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide:hover .slide-gap .slide-content-box .slide-content-box-gap {margin-top:0px;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap h3 {font-size:39.9px;color:#c3964e;font-weight:600;letter-spacing:-1px;padding-bottom:20px;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap h4 {font-size:16px;color:#111;font-weight:600;text-transform:uppercase;padding-bottom:20px;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap p {font-size:15px;color:#666;font-weight:400;line-height:200%;padding-bottom:20px;}
+
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap span {margin-top:200px;display:block;opacity:1;transition:all .6s;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide:hover .slide-gap .slide-content-box .slide-content-box-gap span {margin-top:0;opacity:1;}
 #wrap #main #section3 .wrap .gap .container .content .slide-box > ul li.right-box .box-gap .content-box .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content-box .slide-content-box-gap span a {display:inline-block;font-size:13px;color:#c3964e;font-weight:500;text-transform:uppercase;padding-bottom:3px;border-bottom:1px solid #c3964e;opacity:1;transition:all .3s;}
@@ -406,7 +408,7 @@
 #wrap #main #section6 .wrap .gap .container > ul > li .col-gap .number {width: 100%;}
 #wrap #main #section6 .wrap .gap .container > ul > li .col-gap .number .col {display:inline-block;height:65px;overflow:hidden;}
 #wrap #main #section6 .wrap .gap .container > ul > li .col-gap .number .col ul  {position:relative;top:0;transition:top 1s ease-out;}
-#wrap #main #section6 .wrap .gap .container > ul > li .col-gap .number .col ul li  {} /* 롤링 */
+ /* 롤링 */
 #wrap #main #section6 .wrap .gap .container > ul > li .col-gap .number .col ul li div {font-size:45px;font-weight: 700;font-family:arial;padding:10px 0;}
 
 /* 2530 */
@@ -441,16 +443,40 @@
 
 
 
-#wrap #main #section6 .wrap .gap .container > ul > li .col-gap .title {}
-#wrap #main #section6 .wrap .gap .container > ul > li .col-gap .title h4{}
-
-
-
 
 #wrap #main #section7 {width:100%;}
 #wrap #main #section7 .wrap {width:100%;}
 #wrap #main #section7 .wrap .gap {margin:0;}
-#wrap #main #section7 .wrap .gap .container {width:100%;height: 800px;}
+#wrap #main #section7 .wrap .gap .container {width:100%;}
+
+#wrap #main #section7 .wrap .gap .container .content {width:100%;}
+#wrap #main #section7 .wrap .gap .container .content ul {z-index:1;position:relative;width:100%;height: 800px;}
+#wrap #main #section7 .wrap .gap .container .content ul li {float:left;width: 25%;height: 100%;overflow:hidden;}
+#wrap #main #section7 .wrap .gap .container .content ul li .bg {z-index:1;position:absolute;top:0;left:0;width:100%;height: 800px;background:url(../img/home-interior-design-services-01.jpg) no-repeat 50% 50% scroll;background-size:cover;opacity: 0;}
+#wrap #main #section7 .wrap .gap .container .content ul li .bg0 {background-image:url(../img/home-interior-design-services-01.jpg);opacity: 1; }
+#wrap #main #section7 .wrap .gap .container .content ul li .bg1 {background-image:url(../img/home-interior-design-services-02.jpg) }
+#wrap #main #section7 .wrap .gap .container .content ul li .bg2 {background-image:url(../img/home-interior-design-services-03.jpg) }
+#wrap #main #section7 .wrap .gap .container .content ul li .bg3 {background-image:url(../img/home-interior-design-services-04.jpg) }
+#wrap #main #section7 .wrap .gap .container .content ul li .bg:before {z-index:2;position:absolute;top:0;left:0;content:'';display:block;width:100%;height: 100%;background:rgba(0,0,0, .5)}
+
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap {position:relative;z-index:2;margin:0;border-right: 1px solid rgba(255,255,255,.15);height: 100%;}
+#wrap #main #section7 .wrap .gap .container .content ul li:last-child .content-gap {border-right:0 }
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap {position:relative;width:100%;;height: 100%;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap {width:100%;position:absolute;left:0;bottom:-100px;background:rgba(195, 150, 78, 0);transition:all .6s}
+/* #wrap #main #section7 .wrap .gap .container .content ul li.addEvent .content-gap .content-wrap .title-wrap {bottom:0;background:rgba(195, 150, 78, 1)} */
+#wrap #main #section7 .wrap .gap .container .content ul li:hover .content-gap .content-wrap .title-wrap {bottom:0;background:rgba(195, 150, 78, 1)}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap {padding:60px;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content  {width:100%;color:#fff;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content h2  {font-size:25.2px;line-height: 140%;font-weight: 500;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:50px;opacity:0;transition:all .6s;}
+/* #wrap #main #section7 .wrap .gap .container .content ul li.addEvent .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:20px;opacity: 1;} */
+#wrap #main #section7 .wrap .gap .container .content ul li:hover .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:20px;opacity: 1;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div::after  {content:'';display:block;clear:both;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div p   {float:left;line-height: 200%;font-size:13px;width:70%;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span  {display:block;float:right;width:35px;height: 35px;border-radius: 50%;overflow:hidden;margin-top:8px;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span a {display:block;width: 100%;height: 100%;color:#fff;text-align: center;background:#000;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span a i {font-size:11px;line-height:35px;}
+
 
 #wrap #footer {z-index:1;position:relative;height:500px;background:#333;}
 #wrap #footer .wrap {}

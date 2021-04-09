@@ -613,7 +613,7 @@
           var $slideView = $('#section1 .slide-view'); //터치 선택자(Touch Selector)
           var $section1  = $('#section1');
           var cnt        = 0;
-          var n          = $('#section1 .slide').length-2; //2 = 슬라이드 총갯수(5) - 2(맨앞1 맨뒤1)
+          var n          = $('#section1 .slide').length; //3
           var setId      = null;
           var setId2     = null;    //전체에 타이머가 돌아가기 때문에 전역변수로 사용하자.
 
@@ -638,7 +638,7 @@
                 }
             
                 $section1.css({width:$winW, height:$winH});
-                mainSlideFn();
+               
               }
 
               resizeFn();
@@ -655,33 +655,48 @@
               
 
               //메인슬라이드
-              //1. 메인슬라이드함수
-              function mainSlideFn(){
-                $slideWrap.stop().animate({left:-$winW*cnt }, 600, 'easeInOutExpo', function(){
-                  if(cnt>n-1){cnt=0}
-                  if(cnt<0){cnt=n-1}
-                  $slideWrap.stop().animate({left:-$winW*cnt }, 0);
-                });                
-                pageBtnColorEventFn(); //페이지 버튼 이벤트 함수 호출
+              //1-1. 메인슬라이드함수 - 다음 슬라이드 함수 
+              function mainNextSlideFn(){
+                $slide.css({ zIndex:1 });
+                //현재 첫번째 슬라이드(0) 이면 이전 슬라이드는 마지막 슬라이드(2)
+                $slide.eq(cnt==0?2:cnt-1).css({ zIndex:2 }); // 이전 슬라이드 번호 cnt-1
+                $slide.eq(cnt).css({ zIndex:3 }).stop().animate({opacity:0},0).animate({opacity:1},1000); // 현재 슬라이드 번호  cnt
+                pageBtnColorEventFn();
+              }
+
+              //1-2. 메인슬라이드함수 - 이전 슬라이드 함수 
+              function mainPrevSlideFn(){
+                $slide.css({ zIndex:1 }).animate({opacity:1},0); // 초기화
+                $slide.eq(cnt).css({ zIndex:2});
+                
+                $slide.eq(cnt==2?0:cnt+1).css({ zIndex:3}).stop().animate({opacity:1},0).animate({opacity:0},1000);
+                pageBtnColorEventFn();
               }
 
               //2-1. 다음 슬라이드 카운트 함수
               function nextSlidCountFn(){
                   cnt++;
-                  mainSlideFn(); //메인 슬라이드 함수 호출
+                  if(cnt>2){
+                    cnt=0;
+                  }
+                 
+                  mainNextSlideFn(); //메인 다음 슬라이드 함수 호출
               }
               
               //2-2. 이전 슬라이드 카운트 함수
               function prevSlidCountFn(){
                   cnt--;
-                  mainSlideFn(); //메인 슬라이드 함수 호출
+                  if(cnt<0){
+                    cnt=2;
+                  }
+                  mainPrevSlideFn(); //메인 이전 슬라이드 함수 호출
               }
               
               //3-1. 다음 화살 버튼 클릭 이벤트
               $nextBtn.on({
                 click:  function(){
                   puaseTimerFn();
-                  if( !$slideWrap.is(':animated')){
+                  if( !$slide.is(':animated')){
                     nextSlidCountFn(); //다음 슬라이드 카운트 함수 호출
                   }                  
                 }
@@ -691,7 +706,7 @@
               $prevBtn.on({
                 click:  function(){
                   puaseTimerFn();
-                  if( !$slideWrap.is(':animated')){
+                  if( !$slide.is(':animated')){
                     prevSlidCountFn(); //이전 슬라이드 카운트 함수 호출
                   }
                 }
@@ -713,31 +728,59 @@
                 $(this).on({  //첫번째 슬라이드 호출
                   click:  function(){
                     puaseTimerFn();
-                    cnt = idx; //클릭한 버튼 인덱스 번호가 슬라이드 번호 
-                    mainSlideFn()// 슬라이드 메인함수 호출
+
+                    if(cnt < idx){
+                      cnt = idx;
+                      mainNextSlideFn();
+                    }
+                    if( cnt > idx){
+                      cnt = idx;
+                      mainPrevSlideFn();
+                    }
                   }
                 });
               });
 
 
-              //5 터치 스와이프
-              
-              $slideView.swipe({
-                swipeLeft:function(e){ //오른쪽에서 왼쪽으로 터치
+              //5 사용자 터치 스와이프
+              var touchStart = 0;
+              var touchEnd = 0;
+
+              $slideView.on({
+                mousedown: function(e){ //마우스가 내려갔을 때 스타트값
                   e.preventDefault();
+
                   puaseTimerFn();
-                  if( !$slideWrap.is(':animated')){
-                    nextSlidCountFn();
-                  }
+                  touchStart = e.pageX; //e.clientX
+                  
                 },
-                swipeRight:function(e){ //왼쪽에서 오른쪽으로 터치
+                mouseup: function(e){
                   e.preventDefault();
+
                   puaseTimerFn();
-                  if( !$slideWrap.is(':animated')){
-                    prevSlidCountFn();
-                  }
+                  touchEnd = e.pageX;
+                 
+                  touchSwipeFn();
                 }
               });
+
+              function touchSwipeFn(){
+
+                console.log('start',touchStart);
+                console.log('end',touchEnd)
+                console.log('star-end', touchStart-touchEnd)
+                  
+                if( touchStart-touchEnd >0 ){
+                  if( !$slide.is(':animated')){
+                   nextSlidCountFn();
+                    }
+                }
+                if(touchStart-touchEnd <0){
+                  if( !$slide.is(':animated')){
+                   prevSlidCountFn();
+                    }
+                }
+              }
 
               //6. 자동 타이머 실행 4초 간격으로 타이머 반복 실행 
               function autoTimerFn(){
@@ -755,7 +798,7 @@
                 //5초동안 아무 이벤트 없으면 다시 자동 타이머 실행
                 setId2 = setInterval(function(){
                   t++;
-                  console.log(t);
+                 
                   if(t >=5){
                     clearInterval(setId2);
                     clearInterval(setId);  //있어도 그만 없어도 그만 
@@ -765,6 +808,40 @@
                 },1000);
 
               }
+
+              //마우스 휠 이벤트
+              // var delta = 0;
+
+              // $slideWrap.on('mousewheel DOMMouseScroll' , function(e){
+              //   e.preventDefault();
+
+              //   if( e.originalEvent.wheelDelta){
+              //     delta = e.originalEvent.wheelDelta;
+              //   }
+              //   else {
+              //     delta = e.detail*-40;
+              //   }
+              //   if( delta < 0){
+              //     puaseTimerFn();
+              //     if(!$slide.is(':animated') ){
+              //       nextSlidCountFn();
+              //       if(cnt>n-1){
+              //         $('html,body').stop().animate({scrollTop: $('#section2').offset().top},600);
+              //       }
+                   
+              //     }
+              //   }
+              //   else{
+              //     puaseTimerFn();
+              //     if(!$slide.is(':animated')){
+              //       prevSlidCountFn();
+              //       if(cnt < 0){
+              //         $('html,body').stop().animate({scrollTop: $('#section2').offset().top},600);
+              //       }
+                   
+              //     }
+              //   }
+              // });
 
 
         },
@@ -839,22 +916,44 @@
               });
 
               //4
-              $slideView.swipe({
-                swipeLeft:function(){
+              var start = 0;
+              var end = 0;
+
+              $slideView.on({
+                mousedown:function(e){
+                  e.preventDefault();
                   timerFn();
-                  if(!$slideWrap.is(':animated')){
-                    nextCountFn();
-                  }   
+
+                  start = e.pageX;
+                  console.log('s',start);
+
                 },
-                swipeRight:function(){
+                mouseup:function(e){
+                  e.preventDefault();
                   timerFn();
-                  if(!$slideWrap.is(':animated')){
-                    prevCountFn();
-                  }  
-                }                
+
+                  end = e.pageX;
+                  console.log('e',end);
+                  touchSwipeFn();
+                }
               });
 
+              function touchSwipeFn(){
 
+                console.log('s-e',start-end);
+                if(start-end >0){
+                  if(!$slideWrap.is(':animated')){
+                           nextCountFn();
+                    }   
+                }
+                if(start-end < 0){
+                  if(!$slideWrap.is(':animated')){
+                          prevCountFn();
+                        }  
+                }                
+              }
+
+             
               //5
               function autoPlay(){
                 setId = setInterval(nextCountFn, 4000); 
@@ -919,12 +1018,6 @@
                   // $smallImg.css({marginLeft: x , marginTop: y});
                 }
               });
-              console.log('footer top 위치 offset().top' , $('#footer').offset().top);
-              console.log('창 높이', $(window).height());
-              console.log('footer 높이', $('#footer').height());
-              console.log('웹문서 전체 높이 ' , $(document).height());
-              console.log('웹문서 전체 넓이 ' , $(document).width());
-
 
 
 
@@ -979,23 +1072,42 @@
           // autoPlay();
 
           //4. 터치 슬라이드 함수 
-          $slideView.swipe({
-            swipeLeft:function(e){
+
+          var s = 0;
+          var end = 0;
+          $slideView.on({
+            mousedown:function(e){
               e.preventDefault();
-              if( !$slideWrap.is(':animated')){
-                timerFn();
-                nextCountFn();
-              }         
+              timerFn();
+              s = e.pageX;
+
             },
-            swipeRight:function(e){
+            mouseup:function(e){
               e.preventDefault();
-              if( !$slideWrap.is(':animated')){
-                timerFn();
-                 prevCountFn();
-              }    
+              timerFn();
+              end = e.pageX;
+              
+              swipeFn();
+
             }
           });
-
+          function swipeFn(){
+            console.log('s',s);
+            console.log('e',end);
+            console.log('s-e',s-end);
+        
+            if( s-end > 0){
+              if( !$slideWrap.is(':animated')){
+                     
+                     nextCountFn();
+            }
+          }
+           else if( s-end < 0){
+              if( !$slideWrap.is(':animated')){              
+                prevCountFn();
+            }
+          }
+        }
           //5. 정지상태인 슬라이드 다시 실행하는 타이머 함수 
           function timerFn(){
             var tcnt = 0;
@@ -1046,7 +1158,7 @@
           
           column0.find('.col').each(function(idx){
             num1[idx] = $(this).data('number');
-            console.log(num1);
+           
           });
           column1.find('.col').each(function(idx){
             num2[idx] = $(this).data('number');
@@ -1060,10 +1172,7 @@
             num4[idx] = $(this).data('number');
             
           });
-          console.log(num1);
-          console.log(num2);
-          console.log(num3);
-          console.log(num4);
+        
 
             //find는 자식요소 또는 자손요소만 검색가능/자기자신은 못찾는다
               // console.log(column0.find('ul').eq(0));
@@ -1205,7 +1314,25 @@
             
         },
         section7Fn:function(){
-            
+          var $bg = $('#section7 .bg');
+          var $Ll = $('#section7 li');
+         
+          $bg.stop().animate({opacity:0},600);
+          $bg.eq(0).stop().animate({opacity:1},600);
+
+          $Ll.each(function(idx){
+            $(this).on({
+              mouseenter:function(){
+                $bg.stop().animate({opacity:0},600);
+                $bg.eq(idx).stop().animate({opacity:1},500);
+              },
+              mouseleave:function(){
+                $bg.stop().animate({opacity:0},500);
+                $bg.eq(0).stop().animate({opacity:1},500);
+              }
+            })
+          })
+
         },
         section8Fn:function(){
 
