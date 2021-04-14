@@ -452,7 +452,7 @@
 #wrap #main #section7 .wrap .gap .container .content {width:100%;}
 #wrap #main #section7 .wrap .gap .container .content ul {z-index:1;position:relative;width:100%;height: 800px;}
 #wrap #main #section7 .wrap .gap .container .content ul li {float:left;width: 25%;height: 100%;overflow:hidden;}
-#wrap #main #section7 .wrap .gap .container .content ul li .bg {z-index:1;position:absolute;top:0;left:0;width:100%;height: 800px;background:url(../img/home-interior-design-services-01.jpg) no-repeat 50% 50% scroll;background-size:cover;opacity: 0;}
+#wrap #main #section7 .wrap .gap .container .content ul li .bg {z-index:1;position:absolute;top:0;left:0;width:100%;height: 100%;background:url(../img/home-interior-design-services-01.jpg) no-repeat 50% 50% scroll;background-size:cover;opacity: 0;}
 #wrap #main #section7 .wrap .gap .container .content ul li .bg0 {background-image:url(../img/home-interior-design-services-01.jpg);opacity: 1; }
 #wrap #main #section7 .wrap .gap .container .content ul li .bg1 {background-image:url(../img/home-interior-design-services-02.jpg) }
 #wrap #main #section7 .wrap .gap .container .content ul li .bg2 {background-image:url(../img/home-interior-design-services-03.jpg) }
@@ -465,17 +465,101 @@
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap {width:100%;position:absolute;left:0;bottom:-100px;background:rgba(195, 150, 78, 0);transition:all .6s}
 /* #wrap #main #section7 .wrap .gap .container .content ul li.addEvent .content-gap .content-wrap .title-wrap {bottom:0;background:rgba(195, 150, 78, 1)} */
 #wrap #main #section7 .wrap .gap .container .content ul li:hover .content-gap .content-wrap .title-wrap {bottom:0;background:rgba(195, 150, 78, 1)}
-#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap {padding:60px;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap {padding:12.6382306%;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content  {width:100%;color:#fff;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content h2  {font-size:25.2px;line-height: 140%;font-weight: 500;}
-#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:50px;opacity:0;transition:all .6s;}
+#wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:14.0944327%;opacity:0;transition:all .6s;} /*50*/
 /* #wrap #main #section7 .wrap .gap .container .content ul li.addEvent .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:20px;opacity: 1;} */
-#wrap #main #section7 .wrap .gap .container .content ul li:hover .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:20px;opacity: 1;}
+#wrap #main #section7 .wrap .gap .container .content ul li:hover .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:5.6377731%;opacity: 1;} /*20*/
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div::after  {content:'';display:block;clear:both;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div p   {float:left;line-height: 200%;font-size:13px;width:70%;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span  {display:block;float:right;width:35px;height: 35px;border-radius: 50%;overflow:hidden;margin-top:8px;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span a {display:block;width: 100%;height: 100%;color:#fff;text-align: center;background:#000;}
 #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div span a i {font-size:11px;line-height:35px;}
+
+#wrap #main #section8 {width:100%;padding:130px 0;}
+#wrap #main #section8 .wrap {width:100%;max-width: 1170px;margin:0 auto;}
+#wrap #main #section8 .wrap .gap {margin:0;}
+#wrap #main #section8 .wrap .gap .container {width:100%;}
+#wrap #main #section8 .wrap .gap .container .content{width:100%;}
+
+#wrap #main #section8 .wrap .gap .container .content .left{width:33.3333333%;float:left;}  /*390px*/
+#wrap #main #section8 .wrap .gap .container .content .left .left-gap{margin:0 15px;}
+#wrap #main #section8 .wrap .gap .container .content .left .left-gap .left-content{width:100%;}
+#wrap #main #section8 .wrap .gap .container .content .left .left-gap .left-content h3{font-size:15px;color:#c3964e;font-weight: 500;padding-bottom:20px}
+#wrap #main #section8 .wrap .gap .container .content .left .left-gap .left-content h2{font-size:32.2px;color:#212121;font-weight: 700;line-height: 130%;}
+
+#wrap #main #section8 .wrap .gap .container .content .right{width:66.6666667%;float:left;} /*780px*/
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap{margin:0 15px;} /*780-30px = 750*/
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content{float:right;width:87.0666667%;}/*653px 부모에서 나누기*/ 
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container{width: 100%;position:relative}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view {width: 100%;position:relative;cursor:url(../img/icon-move-black.png),w-resize;overflow: hidden;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap {position:relative;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide {width:100%;position:absolute;top:0;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide2 {left:calc(100%*-1);}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide0 {left:calc(100%*0);position:relative;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide1 {left:calc(100%*1);}
+
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap {margin:0;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content {width:100%;}
+
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-left  {float:left;width:27.5650842%;} /*180px*/
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-left .slide-left-gap  {margin:0;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-left .slide-left-gap .slide-left-content  {width:100%}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-left .slide-left-gap .slide-left-content img  {width:100%;border-radius: 50%;max-width:180px;min-width:150px;}
+
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right  {width:72.4349158%;float:left} /*473px*/
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right .slide-right-gap  {margin:2.1141649%  0 0 14.7991543%} /* 10px 0 0 70px */
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right .slide-right-gap .slide-right-content  {width:100%}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right .slide-right-gap .slide-right-content p   {font-size:15px;color:#828282;line-height: 200%;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right .slide-right-gap .slide-right-content h4   {font-size:15px;color:#212121;font-weight: 600;text-transform: uppercase;padding:30px 0 15px 0;}
+#wrap #main #section8 .wrap .gap .container .content .right .right-gap .right-content .slide-container .slide-view .slide-wrap .slide .slide-gap .slide-content .slide-right .slide-right-gap .slide-right-content h5   {font-size:13px;color:#828282;text-transform: uppercase;}
+
+#wrap #main #section9 {width:100%;padding:130px 0;background:#f1edea;}
+#wrap #main #section9 .wrap {width:100%;max-width: 1704.666px;margin:0 auto;}
+#wrap #main #section9 .wrap .gap {margin:0;}
+#wrap #main #section9 .wrap .gap .container {width:100%;}
+
+#wrap #main #section9 .wrap .gap .container .title {text-align: center;padding-bottom:5.2796266%;}/* 90px */
+#wrap #main #section9 .wrap .gap .container .title h3 {font-size:15px;color:#c3964e;font-weight: 500;padding-bottom:1.1732504%}/*20px*/
+#wrap #main #section9 .wrap .gap .container .title h2 {color:#232323;font-size:32.2px;font-weight: 700;}
+
+#wrap #main #section9 .wrap .gap .container .content {width:100%}
+#wrap #main #section9 .wrap .gap .container .content >ul {width:100%}
+#wrap #main #section9 .wrap .gap .container .content >ul > li {float:left;width:33.3333%}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap {margin:0 15px;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap {width:100%;border-radius: 7px;box-shadow: 4px -5px 20px rgba(0,0,0,.08);overflow: hidden;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul {width: 100%;height: 359px}/*js li 너비 * 1.38 ul높이 설정*/
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .left {float:left;width: 50%;height: 100%;background:url(../img/blog-img232.jpg) no-repeat -30px 50%;background-size:120% auto;transition:all .6s ease-in-out; }
+#wrap #main #section9 .wrap .gap .container .content >ul > li:hover .content-gap .content-wrap ul .left {background-position-x: 0;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li:nth-child(1) .content-gap .content-wrap ul .left {background-image: url(../img/blog-img232.jpg);}
+#wrap #main #section9 .wrap .gap .container .content >ul > li:nth-child(2) .content-gap .content-wrap ul .left {background-image: url(../img/home-interior-design-blog-img02.jpg);}
+#wrap #main #section9 .wrap .gap .container .content >ul > li:nth-child(3) .content-gap .content-wrap ul .left {background-image: url(../img/blog-img237.jpg);}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .left a {display:block;width:100%;height: 100%;background:rgba(0,0,0,0);transition: all .6s ease-in-out;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li:hover .content-gap .content-wrap ul .left a {background:rgba(0,0,0,.2)}
+
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right {float:left;width: 50%;height: 100%;background:#fff;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap {padding:22.2919051%  14.86127%} /*60px 40px*/
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap {width: 100%;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h5 {padding-bottom: 31.7302506%;font-size:10px;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h5 a {display:inline-block;height: 26px;border:1px solid #ccc;padding:0 20px;line-height: 26px;border-radius:14px;background:#fff;color:#828282;font-weight: 500;transition:all .3s ease-in-out;box-shadow: 4px -4px 17px rgba(0,0,0,.10);}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h5 a:hover {color:#c3964e;box-shadow: 3px -3px 15px rgba(0,0,0,0);}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h3  {font-size: 18px}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h3 a  {color:#232323;font-weight: 500;line-height: 130%;transition:all .3s;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h3 a:hover  {color:#c3964e;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap p  {padding:10.5732834% 0 15.8599251% 0;line-height: 200%;font-size:15px;color:#828282;}/*20px 0 30px*/
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h6  {font-size:12px;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h6 a  {font-weight: 500;color:#c3964e;transition: all .3s;}
+#wrap #main #section9 .wrap .gap .container .content >ul > li .content-gap .content-wrap ul .right .right-gap .right-wrap h6 a:hover  {color:#232323;}
+
+#wrap #main #section10 {width:100%;}
+#wrap #main #section10 .wrap {width:100%;}
+#wrap #main #section10 .wrap .gap {margin:0;}
+#wrap #main #section10 .wrap .gap .container {width:100%;}
+#wrap #main #section10 .wrap .gap .container .content {position:relative;z-index: 1;;width:100%;height: 18.39201261vw;display:table;background:url(../img/home-interior-design-start-project-bg.jpg) no-repeat 50% 50%; background-size:cover;}
+#wrap #main #section10 .wrap .gap .container .content::after {content:'';display:block;width:100%;height: 100%;background:rgba(0,0,0, .2);position:absolute;top:0;left:0;z-index: 2;}
+#wrap #main #section10 .wrap .gap .container .content h2 {text-align: center;display:table-cell;vertical-align: middle;color:#fff;font-size:20px;font-weight: 600;position:relative;z-index: 3;;}
+#wrap #main #section10 .wrap .gap .container .content h2 a {display:inline-block;padding-bottom:5px;border-bottom:1px solid #fff;color:#fff;}
 
 
 #wrap #footer {z-index:1;position:relative;height:500px;background:#333;}

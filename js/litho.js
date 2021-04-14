@@ -745,30 +745,58 @@
               //5 사용자 터치 스와이프
               var touchStart = 0;
               var touchEnd = 0;
+              var mouseDown = false;
+              var touchYstart = 0;
+              var touchYend = 0;
 
               $slideView.on({
-                mousedown: function(e){ //마우스가 내려갔을 때 스타트값
+                mousedown: function(e){
+                  mouseDown = false; //마우스가 내려갔을 때 스타트값
                   e.preventDefault();
-
                   puaseTimerFn();
-                  touchStart = e.pageX; //e.clientX
-                  
+                  touchStart = e.pageX; //e.clientX                  
+                },
+                touchstart: function(e){ //마우스가 내려갔을 때 스타트값
+                  e.preventDefault();
+                  mouseDown = false;
+                  puaseTimerFn();
+                  touchStart = e.originalEvent.changedTouches[0].clientX;
+                  touchYstart = e.originalEvent.changedTouches[0].clientY;                  
                 },
                 mouseup: function(e){
+                  mouseDown = true;
                   e.preventDefault();
-
                   puaseTimerFn();
-                  touchEnd = e.pageX;
-                 
+                  touchEnd = e.pageX;                 
                   touchSwipeFn();
+                },
+                touchend: function(e){                  
+                  e.preventDefault();
+                  mouseDown = true;
+                  puaseTimerFn();
+                  touchEnd  = e.originalEvent.changedTouches[0].clientX;
+                  touchYend = e.originalEvent.changedTouches[0].clientY;
+                  touchSwipeFn();
+
+                  if( touchYstart-touchYend < -50){ // 위에서 아래로 터치하면 
+                    $('html,body').stop().animate({scrollTop: 0},1000);
+                  }
+                  if( touchYstart-touchYend > 50){ //아래에서 위로 터치하면 다음 섹션으로 부드럽게 이동
+                    $('html,body').stop().animate({scrollTop: $('#section2').offset().top},1000);
+                  }
+                  // return false;
+                },
+                mouseleave:function(e){
+                  if(mouseDown == false){
+                    mouseDown = true;
+                    touchEnd = e.pageX;
+                    touchSwipeFn();
+                  }
                 }
+
               });
 
-              function touchSwipeFn(){
-
-                console.log('start',touchStart);
-                console.log('end',touchEnd)
-                console.log('star-end', touchStart-touchEnd)
+              function touchSwipeFn(){               
                   
                 if( touchStart-touchEnd >0 ){
                   if( !$slide.is(':animated')){
@@ -918,29 +946,47 @@
               //4
               var start = 0;
               var end = 0;
+              var mouseDown = false;
 
               $slideView.on({
                 mousedown:function(e){
                   e.preventDefault();
+                  mouseDown = false;
                   timerFn();
+                  start = e.pageX;                
 
-                  start = e.pageX;
-                  console.log('s',start);
+                },
+                touchstart:function(e){
+                  e.preventDefault();
+                  mouseDown = false;
+                  timerFn();
+                  start = e.originalEvent.changedTouches[0].clientX;               
 
                 },
                 mouseup:function(e){
                   e.preventDefault();
+                  mouseDown = true;
                   timerFn();
-
-                  end = e.pageX;
-                  console.log('e',end);
+                  end = e.pageX;                 
                   touchSwipeFn();
+                },
+                touchend:function(e){
+                  e.preventDefault();
+                  mouseDown = true;
+                  timerFn();
+                  end = e.originalEvent.changedTouches[0].clientX;          
+                  touchSwipeFn();
+                },
+                mouseleave:function(e){
+                 if( mouseDown == false ){
+                   mouseDown = true;
+                   end = e.pageX;
+                   touchSwipeFn();
+                 }
                 }
               });
 
-              function touchSwipeFn(){
-
-                console.log('s-e',start-end);
+              function touchSwipeFn(){               
                 if(start-end >0){
                   if(!$slideWrap.is(':animated')){
                            nextCountFn();
@@ -1075,30 +1121,50 @@
 
           var s = 0;
           var end = 0;
+          var mouseDown = 0;
           $slideView.on({
             mousedown:function(e){
               e.preventDefault();
+              mouseDown = 0;
               timerFn();
               s = e.pageX;
 
             },
+            touchstart:function(e){
+              e.preventDefault();
+              mouseDown = 0;
+              timerFn();
+              s = e.originalEvent.changedTouches[0].clientX;
+
+            },
             mouseup:function(e){
               e.preventDefault();
+              mouseDown = 1;
               timerFn();
-              end = e.pageX;
-              
+              end = e.pageX;              
               swipeFn();
+            },
+            touchend:function(e){
+              e.preventDefault();
+              mouseDown = 1;
+              timerFn();
+              end = e.originalEvent.changedTouches[0].clientX;             
+              swipeFn();
+            },
+            mouseleave:function(e){
+              if( mouseDown == 0){
+                mouseDown = 1;
+                end = e.pageX;
+                swipeFn();
+                console.log('s-e',s-end);
+              }
 
             }
           });
           function swipeFn(){
-            console.log('s',s);
-            console.log('e',end);
-            console.log('s-e',s-end);
-        
+           
             if( s-end > 0){
-              if( !$slideWrap.is(':animated')){
-                     
+              if( !$slideWrap.is(':animated')){                     
                      nextCountFn();
             }
           }
@@ -1335,9 +1401,200 @@
 
         },
         section8Fn:function(){
+          var $slideView = $('#section8 .slide-view');
+          var $slideWrap = $('#section8 .slide-wrap');
+          var $slide = $('#section8 .slide');
+          var slideW = $('#section8 .slide').innerWidth();
+          var n = $('.slide').length;
+          var touchStart = 0;
+          var touchEnd = 0;
+          var cnt = 0;
+          var next = [2, 0, 1]; //5개인경우 [4,0,1,2,3] 10개인 경우 [9,0,1,2,3,4,5,6,7,8]
+          var prev = [0, 2, 1]; //5개인경우 [0,4,3,2,1] 10개인 경우 [0,9,8,7,6,5,4,3,2,1]
+          var isMouseDown  = 0;
 
+          mainSlideFn(); //cnt=1  //이름있는 함수는 어디든 호출 가능. 
+     
+          //1. next main slide -배열 슬라이드
+            function mainSlideFn(){
+              //next 배열에 초기값 설정 방법 
+              //1. 슬라이드 전체 개수(3)만큼 반복문처리 설정 
+              for(var i=0; i<n; i++){ //0 1 2
+                  next[i] = i;  //next[0]=0; next[1]=1; next[2]=2;
+              }
+              //팝핑 작업 
+              //2.next = [0,1,2] 기억된 마지막 배열 값을 삭제(pop())한다. 그리고 임시기억 시킨다.             
+              //3.next 배열 맨 처음 위치에 삽입한다. unshift() 언쉬프팅 
+              var imsi = next.pop(); //next=[0 ,1]
+                  next.unshift(imsi); // next = [2,0,1]; //초기 설정(기준값 반드시 사용)
+
+              //배열 메서드
+              //1, 맨 첫번째 배열값 삭제(shift)
+              //2. 삭제된 배열값 임시 변수에 저장 (기억)
+              //3. 임시에 기억된 배열값 맨 마지막 위치에 배열 삽입(push)
+
+              next = [2, 0, 1];
+              for(var i=0; i<cnt; i++){
+                var imsi = next.shift(); //맨 앞(첫번째) 배열값 삭제 후 임시기억변수에 저장 
+                         next.push(imsi);                                                 
+              }
+
+              for(var i=0; i<n; i++){
+        
+                  $slide.eq(next[i]).stop().animate({left: (100*i) + '%'},0).animate({left: (100*(i-1)) + '%'},1000);  
+              }
+              // $slide.eq(next[0]).stop().animate({left: (100*0) + '%'},0).animate({left: (100*-1) + '%'},1000);
+              // $slide.eq(next[1]).stop().animate({left: (100*1) + '%'},0).animate({left: (100*0) + '%'},1000);
+              // $slide.eq(next[2]).stop().animate({left: (100*2) + '%'},0).animate({left: (100*1) + '%'},1000);
+              }
+
+               //1. prev main slide -배열 슬라이드
+              function mainPrevSlideFn(){
+                //1.슬라이드 총갯수만큼 반복 배열값 삽입 
+                var j=n; //3
+                for(var i=0;i<n;i++){
+                  j--; //2
+                  prev[i] = j; //prev[0]=2 , prev[1] = 1, prev[2] =0
+                }
+                //결과(result) : prev = [2,1,0] 역순으로 기억 
+                //2.맨뒤 배열값 삭제 후 임시기억변수에 저장한다.(pop())
+                //3.임시 기억변수에 기억된 값을 배열 맨앞에 삽입한다. (unshift())
+                  var imsi = prev.pop();
+                            prev.unshift(imsi); //prev = [0,2,1]
+
+
+
+                prev = [0, 2, 1]; //기준값 반드시 설정
+                //cnt = 2인경우 0회, cnt=1인경우 1회, cnt=0인경우 2회
+                for(var i=n-1;i>cnt; i--){  //반복문 알고리즘
+                  var imsi = prev.shift();
+                              prev.push(imsi);
+                 
+                }
+                // if( cnt == 2){  //배열 값 순서 재배정 역순으로 배치 //0회
+                //   prev = [0, 2, 1]; 
+                // }
+                // else if(cnt == 1 ){ //1회 반복
+                //   prev = [2, 1, 0];
+                // }
+                // else if (cnt == 0){  //2회반복
+                //   prev = [1, 0, 2];
+                // }
+                
+                for(var i=0; i<n; i++){
+                  $slide.eq(prev[i]).stop().animate({left: (100* (i*-1)) + '%'},0).animate({left: (100*  ((i*-1)+1)) + '%'},1000);
+                }
+                
+
+                // $slide.eq(prev[0]).stop().animate({left: (100* 0) + '%'},0).animate({left: (100* 1) + '%'},1000);
+                // $slide.eq(prev[1]).stop().animate({left: (100*-1) + '%'},0).animate({left: (100* 0) + '%'},1000);
+                // $slide.eq(prev[2]).stop().animate({left: (100*-2) + '%'},0).animate({left: (100*-1) + '%'},1000);
+                }
+
+            //2 next slide count fn 
+            function nextSlidecountFn(){
+              cnt++; // 1 2 0 1 2 .....
+              if(cnt>2){cnt=0}             
+              mainSlideFn();
+            }
+             //2 prev slide count fn 
+            function prevSlidecountFn(){
+              cnt--;
+              if(cnt<0){cnt=2}
+              mainPrevSlideFn();
+            }
+            //3.스와이프 터치 좌우 이벤트 수정 보완(패치버전)
+            //3.touch event listner 
+            $slideView.on({
+              mousedown:function(e){
+                isMouseDown = 1 ;  //마우스가 다운 상태(즉 터치 드래그시작을 알려줌)
+                e.preventDefault();
+                touchStart = e.pageX;
+              },
+              touchstart:function(e){ //손가락으로 터치 시작 (모바일 터치 이벤트1)
+                isMouseDown = 1 ;  
+                e.preventDefault();
+                touchStart = e.originalEvent.changedTouches[0].pageX; //제이쿼리 지원이 안되서 오리지널 자바스크릡트 이벤트를 가져옴.
+              },
+              mouseup:function(e){
+                isMouseDown = 0 ; //마우스 다운을 초기화 상태로 전환 마우스리브가 동작안함.
+                e.preventDefault();
+                touchEnd = e.pageX;
+                //call next slide, prev slide event function 
+                touchCallfn();
+              },
+              touchend:function(e){ //손가락 터치 끝 (모바일 터치 이벤트2)
+                isMouseDown = 0 ; 
+                e.preventDefault();
+                touchEnd = e.originalEvent.changedTouches[0].pageX;              
+                touchCallfn();
+              },
+              mouseleave:function(e){ //마우스를 업이 안된 상태에서만 수행
+                if (isMouseDown == 1) { //마우스가 다운 상태에서만 동작 
+                  isMouseDown = 0; //1회만 수행 해야함 아니면 계쏙 마우스 리브 실행 
+                  touchEnd = e.pageX;
+                  // console.log('start-end', touchEnd - touchStart );
+                  touchCallfn();
+                }               
+              },
+              // touchmove:function(e){ //손가락 터치 후 쭈욱 끌고 내려가는거 (모바일 터치 이벤트3)
+              //   if (isMouseDown == 1) { 
+              //     isMouseDown = 0; 
+              //     touchEnd = e.originalEvent.changedTouches[0].pageX;                  
+              //     console.log('start-end', touchEnd - touchStart );
+              //     touchCallfn();
+              //   }               
+              // }
+            });
+
+            //4. 터치시 호출 함수( 다음 슬라이더, 이전슬라이드 이벤트 함수 호출)
+            function touchCallfn(){
+             
+              if( touchStart > touchEnd){
+                nextSlidecountFn();
+              }
+              if( touchStart < touchEnd){
+                prevSlidecountFn();
+              }
+
+            }
         },
         section9Fn:function(){
+          // left 높이 = left 박스의 너비값에 * 높이 비율 1.385597505%
+          var $ul = $('#section9 .content-wrap ul');
+          var $leftW = $('#section9 .left').innerWidth();;
+          var $h3 = $('#section9 .right-wrap h3');
+          var $p = $('#section9 .right-wrap p');
+          var $h6 = $('#section9 .right-wrap h6');
+
+          var $ulH = $leftW * 1.333798986;
+          var h3Size = $leftW*0.066875715;
+          var pSize  = $leftW*0.055729763;
+          var h6Size  = $leftW*0.04458381;
+
+           
+
+           //1.반응형 함수
+           function resizeFn(){
+            $leftW = $('#section9 .left').innerWidth();;
+             $ulH = $leftW * 1.333798986;
+             h3Size = $leftW*0.066875715;
+             pSize  = $leftW*0.055729763;
+             h6Size  = $leftW*0.04458381;
+
+            $ul.css({height: $ulH});
+            $h3.css({fontSize:h3Size});
+            $p.css({fontSize:pSize});
+            $h6.css({fontSize:h6Size});
+           }
+
+           //2. 반응형 resize() 메서드
+           $(window).resize(function(){
+            setTimeout(resizeFn,100);
+           });
+
+           //3. 실행
+           setTimeout(resizeFn,100);
 
         },
         section10Fn:function(){
