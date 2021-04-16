@@ -13,9 +13,10 @@
             this.section6Fn();
             this.section7Fn();
             this.section8Fn();
-            this.section9Fn();
-            this.section10Fn();
+            this.section9Fn();           
             this.footerFn();
+            this.smoothScrollFn();
+            this.demoModalFn();
         },
 
         scrollEventFn:function(){
@@ -1596,12 +1597,90 @@
            //3. 실행
            setTimeout(resizeFn,100);
 
-        },
-        section10Fn:function(){
-
-        },
+        },      
         footerFn:function(){
+          //폼을 이용한 메일주소를 php(서버사이드 스크립트 언어) 비동기 전송 
+          //AJAX
+          var $submitBtn = $('#submitBtn');
+          var $reponse = $('.reponse h3');
+          var $frmEmail = $('#frmEmail'); //$가 있음으로 객체 $없으면 일반변수
+          
 
+
+          $submitBtn.on({
+            click:function(event){
+              // event.preventDefault();  //전송버튼 기능 삭제              
+
+              var frmEmailVal = $('#frmEmail').val(); //폼 입력상자 value
+              var frmCodeVal = $('#frmCode').val();  //폼 입력상자 value
+
+              //유효성 검사 
+              if( $frmEmail == '' ){
+                alert('메일 주소를 입력하세요 !');
+                $('#frmEmail').focus(); //입력 대기상태로 이동 포커스
+                return false; //버튼 클릭 취소
+            }            
+            else{
+
+              //AJAX 비동기 전송 시작 
+              $.ajax({
+                url: './response.php',
+                type: 'POST', //프로퍼티
+                data: {  //전송 데이터
+                    email : frmEmailVal,
+                    code : frmCodeVal                  
+                },
+                success: function(result){
+                  $frmEmail.val('');
+                  $reponse.html(result);
+                  $frmEmail.focus();
+
+                },
+                error:function(msg){
+                  alert('AJAX 전송 실패!!');
+                  console.log( msg );
+                }
+              });
+            }
+          }
+          });
+
+        },
+        smoothScrollFn:function(){
+          var $smoothBtn = $('.smoothBtn');
+          var $goTopBtnWrap = $('.goTopBtn-wrap');
+          var t = 0; //토글 변수 
+
+          $smoothBtn.on({
+            click:function(e){
+              e.preventDefault();
+              var url = $(this).attr('href');
+              $('html,body').stop().animate({scrollTop: $(url).offset().top},600,'easeInOutExpo');              
+            }
+          });
+
+          //최상단에서 100픽셀이상 아래로 스크롤 하면 
+          //goTop 메뉴가 보이고 
+          //맨위로 올라가면 안보인다. 
+          $(window).scroll(function(){
+            if( $(window).scrollTop() >= 100 ){
+              if( t==0){ //버블링 방지
+                t=1; //설정 안해주면 계속 실행됨
+                $goTopBtnWrap.stop().fadeIn(1000);
+              }             
+            }
+            else{
+              if(t == 1){
+                t=0; //초기화
+                $goTopBtnWrap.stop().fadeOut(1000);
+              }             
+            }
+          })
+
+        },
+        demoModalFn:function(){
+          //모달창 사용 HTML overflow 감추기 데모사이트를 슬라이딩 우측에서 부드럽게 
+          //슬라이딩 방식의 스크립트 애니메이션 제작 
         }
     } //객체 끝
 

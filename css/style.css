@@ -557,12 +557,103 @@
 #wrap #main #section10 .wrap .gap {margin:0;}
 #wrap #main #section10 .wrap .gap .container {width:100%;}
 #wrap #main #section10 .wrap .gap .container .content {position:relative;z-index: 1;;width:100%;height: 18.39201261vw;display:table;background:url(../img/home-interior-design-start-project-bg.jpg) no-repeat 50% 50%; background-size:cover;}
-#wrap #main #section10 .wrap .gap .container .content::after {content:'';display:block;width:100%;height: 100%;background:rgba(0,0,0, .2);position:absolute;top:0;left:0;z-index: 2;}
+#wrap #main #section10 .wrap .gap .container .content::after {content:'';display:block;width:100%;height: 100%;background:rgba(0,0,0, .3);position:absolute;top:0;left:0;z-index: 2;}
 #wrap #main #section10 .wrap .gap .container .content h2 {text-align: center;display:table-cell;vertical-align: middle;color:#fff;font-size:20px;font-weight: 600;position:relative;z-index: 3;;}
 #wrap #main #section10 .wrap .gap .container .content h2 a {display:inline-block;padding-bottom:5px;border-bottom:1px solid #fff;color:#fff;}
 
 
-#wrap #footer {z-index:1;position:relative;height:500px;background:#333;}
-#wrap #footer .wrap {}
-#wrap #footer .wrap .gap {}
-#wrap #footer .wrap .gap .container {}
+#wrap #footer {z-index:1;position:relative;padding:130px 0;background:#232323;}
+#wrap #footer .wrap {width:100%;max-width: 1170px;margin:0 auto;}
+#wrap #footer .wrap .gap {margin:0;}
+#wrap #footer .wrap .gap .container {width: 100%;}
+#wrap #footer .wrap .gap .container .content {width:100%}
+#wrap #footer .wrap .gap .container .content ul {width:100%}
+#wrap #footer .wrap .gap .container .content ul li {width:30%;float:left;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) {width:40%;}
+#wrap #footer .wrap .gap .container .content ul li .content-gap {margin:0 15px;}
+#wrap #footer .wrap .gap .container .content ul li .content-gap .content-wrap {width:100%;color:#828282;font-size:15px;}
+
+/*col1*/
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap {text-align: left;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap h1 {padding-bottom:20px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap h1 a {display:inline-block;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap h1 a img {width: auto;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap address {display:block;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap address span {display:inline-block;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap address span a {color:#828282;padding-bottom:1px;border-bottom:1px solid #828282;transition:all .3s}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(1) .content-gap .content-wrap address span a:hover {color:#fff;border-bottom:1px solid #fff}
+
+/*col2*/
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap  {text-align: center;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap h4 {width:100%;padding-bottom: 20px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap h4 strong {color:#fff;font-weight: 500;margin-right:10px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap {width:100%}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form {width:100%;position:relative;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .input-wrap {z-index:1;width: auto;height: 52px;border:1px solid #555;padding:0 60px 0 15px;transition:all .3s}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .input-wrap.addAjax {border:1px solid #f00;}
+
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .input-wrap input[type='email'] {width: 100%;height: 100%;background:transparent;color:#828282}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .input-wrap input[type='email']::placeholder {color:#828282;font-size:13px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .input-wrap input[type='hidden'] {display:none;}
+
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .button-wrap {z-index:2;position:absolute;right:0;top:0;width:60px;height: 52px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .button-wrap button {font-size:20px;background:transparent;line-height: 52px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .button-wrap button:active {outline:0}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .button-wrap button:focus {outline:0}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(2) .content-gap .content-wrap .form-wrap form .button-wrap button i {color:#c3964e;}
+
+/*col2*/
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap  {text-align: right;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap h4 {padding-bottom:20px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap .sns-wrap {width:100%;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap .sns-wrap span {display:inline-block;margin-left:20px;}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap .sns-wrap span a {color:#fff;transition:all .3s}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap .sns-wrap span a:hover {color:#919191}
+#wrap #footer .wrap .gap .container .content ul li:nth-child(3) .content-gap .content-wrap .sns-wrap span a i {font-size:14px}
+
+/*go to btn*/
+.goTopBtn-wrap {z-index:3;position:fixed;bottom:50px;right: 50px;width: 35px;height: 35px;transition:bottom .6s;border-radius: 50%;overflow: hidden;box-shadow: 3px 4px 10px rgba(0,0,0,.2),-3px -4px 10px rgba(0,0,0,.2);}
+.goTopBtn-wrap.addGotop {opacity: 1;}
+.goTopBtn-wrap:hover {bottom:55px;}
+.goTopBtn-wrap a {display:block;width:100%;height: 100%;line-height: 30px;text-align: center;background:#fff;}
+.goTopBtn-wrap a i {font-size:17px;}
+
+/*modal Demo*/
+#modalDemo {z-index:4;position:fixed;top:0;right:-695px;width:auto;max-width: 655px;height: 100%;background:#fff;box-shadow: -10px 0 25px rgba(0,0,0, .15);padding-right: 20px;transition:all .3s;}
+#modalDemo.addModal {right:0;}
+#modalDemo .wrap {width: 100%;height: 100%;overflow-y: scroll;}
+#modalDemo .wrap::-webkit-scrollbar {width:2px;}
+#modalDemo .wrap::-webkit-scrollbar-track {background:#f0f0f0;}
+#modalDemo .wrap::-webkit-scrollbar-button {background:#f00;height: 40px;}
+#modalDemo .wrap::-webkit-scrollbar-thumb {background:#000;}
+
+#modalDemo .wrap .gap {padding:40px 10px;}
+#modalDemo .wrap .gap .container {width:100%;}
+#modalDemo .wrap .gap .container .title {text-align: center;padding-bottom:60px;}
+#modalDemo .wrap .gap .container .title h2 {font-size:16px;color:#828282;font-weight: 600;padding-bottom:20px;}
+#modalDemo .wrap .gap .container .title h2 span {display:inline-block;background-image:linear-gradient(to right,#5065da,#556fff,#c557ad,#e65f9a,#e66176);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight: 600;padding-bottom:20px;}
+#modalDemo .wrap .gap .container .title h3 {font-size:32.2px;color:#232323;font-weight: 600;}
+
+#modalDemo .wrap .gap .container .content {width: 100%;}
+#modalDemo .wrap .gap .container .content ul {width: 100%;}
+#modalDemo .wrap .gap .container .content ul li  {float:left;width: 33.3333%;height: 245.781px;} /* //플로트는 높이가 바뀌면 다음줄로 변할수 있으니 높이를 일정하게 지정  */
+#modalDemo .wrap .gap .container .content ul li .content-gap {margin:15px;}
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap {width: 100%;}
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap a {display:inline-block;} 
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap a img {width: 100%;box-shadow: 2px 2px 10px rgba(0,0,0,.1),-2px -2px 10px rgba(0,0,0,.1);border-radius: 3px;transition: all .6s}
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap a:hover img {margin-top:-10px;}
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap a .caption {width: 100%;display:block;padding:20px 0;text-align: center;font-size:13px;font-weight: 600;transition: all .8s}
+#modalDemo .wrap .gap .container .content ul li .content-gap .content-wrap a:hover .caption {margin-top:-10px;}
+
+/*modal btn*/
+#modalDemo .wrap .gap .container .button-wrap {position:absolute;left:-59px;bottom:20%;height: 54px;transition:left .3s;}
+#modalDemo .wrap .gap .container .button-wrap.addModal {left:-150px;}
+#modalDemo .wrap .gap .container .button-wrap a {display:inline-block;background:#ddd;height: 100%;color:#000;text-align: center;width:59px;}
+#modalDemo .wrap .gap .container .button-wrap a .close {display:block;height: 100%;line-height: 50px;}
+#modalDemo .wrap .gap .container .button-wrap.addModal a .close {display:none;} /* 공동인 곳에 넣어주자.하나만해도 실행 */
+#modalDemo .wrap .gap .container .button-wrap a .close i {font-size:23px;}
+
+#modalDemo .wrap .gap .container .button-wrap a .group {display:none;width:150px;height: 100%;line-height: 48px;background:#fff;box-shadow: 5px 5px 10px rgba(0,0,0,.1),-5px -5px 10px rgba(0,0,0,.1)}
+#modalDemo .wrap .gap .container .button-wrap.addModal a .group {display:block;}
+#modalDemo .wrap .gap .container .button-wrap a .group i {font-size:16px;margin:3px 7px 0 0;}
+#modalDemo .wrap .gap .container .button-wrap a .group span {font-size:15px;}
