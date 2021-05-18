@@ -14,6 +14,7 @@
             this.section7Fn();
             this.section8Fn();
             this.section9Fn();           
+            this.section10Fn();           
             this.footerFn();
             this.smoothScrollFn();
             this.demoModalFn();
@@ -875,9 +876,43 @@
 
         },
         section2Fn:function(){
+          // 스크롤시(언제) 섹션2가 노출되면 
+          //3칸 좌측에서 우측으로 차례로 페이드 인효과 
+          //첫번째칸 페이드아웃 (css opacity:0) 페이드인(css opacity :1 ) time:0.6s
             
+          //1.선택자 변수 
+          var col = $('#section2 .container>ul>li');
+          var t = 0; //toggle 변수 스크롤 이벤트 버블링을 막기 위함.
+
+          function fadeInFn(){
+            col.eq(0).stop().animate({opacity:1},600, function(){
+              col.eq(1).stop().animate({opacity:1},600, function(){
+                col.eq(2).stop().animate({opacity:1},600); 
+              });
+            });
+          }
+          //새로고침시 실행
+          // fadeInFn();
+
+          //스크롤이벤트
+          $(window).scroll(function(){
+            //상단 섹션 1에서 스크롤탑값이 400픽셀 아래로 내려오면 
+            //섹션2의 페럴럭스 에니메이션 수행
+            if($(this).scrollTop() == 0){
+              t=0;  //초기화 맨 위에 도달시 
+              col.stop().animate({opacity:0},0);
+            }
+              if( $(this).scrollTop() > 400 ){
+                if(t==0){
+                  t=1;
+                  fadeInFn();
+                }
+              }
+          });
+           
         },
         section3Fn:function(){
+          var $section3    = $('#section3');
           var $prevBtn    = $('#section3 .prev-btn');
           var $nextBtn    = $('#section3 .next-btn');
           var $slideWrap  = $('#section3 .slide-wrap');
@@ -888,6 +923,25 @@
           var n           = $('#section3 .slide').length-(4+4)-1; //4개(0,1,2,3)
           var $slideW     = $('#section3 .slide').innerWidth();
           var $window     = $(window);
+          var t           = 0;
+
+              //페럴럭스
+              function scrollFn(){
+                $section3.addClass('addAni');
+              }
+              $window.scroll(function(){
+                if( $(this).scrollTop() === 0){
+                  t=0;
+                  $section3.removeClass('addAni');
+                }
+                if( $(this).scrollTop() > 900){
+                  if(t==0){
+                    t=1;
+                    scrollFn(); //에드클래스는 토글변수 안넣어도 버블링 발생x
+                  }
+                }
+              });
+             
 
               //1.
               function responseFn(){
@@ -1030,11 +1084,54 @@
         },
         section4Fn:function(){
           var $section4 = $('#section4');   //객체변수 
+          var $left = $('.left-wrap');   //객체변수 
+          var $right = $('.right-wrap');   //객체변수 
           var $smallImg = $('.small-img');   //객체변수 
           var $largeImg= $('.large-img');   //객체변수 
           var x = 0;   //일반 변수 
           var y = 0;
+          var t = 0;
+          var section4Top = $('#section4').offset().top; //섹션4의 탑값
+          var section5Top = $('#section4').offset().top; //섹션4의 탑값
+          var imgTop = -20;
+          var oldScrollTop = 0; //이전 스크롤 값
+          var newScrollTop = 0; //새로운 스크롤 값
 
+        
+          //페럴럭스
+          function scrollFn(){
+            $left.addClass('addAni');
+            setTimeout(function(){
+              $right.addClass('addAni');
+            },200);
+            };
+             $(window).scroll(function(){
+               if($(this).scrollTop() > section4Top -400){
+                 if(t == 0){
+                   t=1;
+                   scrollFn();
+                 }
+               }
+              
+              
+               if( $(this).scrollTop() >= section4Top-400 && $(this).scrollTop() < section5Top+400 ){
+                
+                newScrollTop = $(window).scrollTop();
+                if ( (oldScrollTop - newScrollTop) >0 ){
+                //스크롤이 위로 올라가면 이미지는 아래로 내려간다.
+                 imgTop+=3; //1씩증가 -20+1 -19+1 
+                 //적용
+                 $largeImg.css({transition:'none',top:imgTop});                 
+                }
+                if ( (oldScrollTop - newScrollTop) < 0 ){                         
+                 //스크롤이 아래로 내려가면 이미지는 위로 올라가고 
+                 imgTop-=3; //1씩 감소 -20+-1=-21 
+                 $largeImg.css({transition:'none',top:imgTop});
+                }
+                oldScrollTop = newScrollTop; //교체하기                                  
+               }
+             });          
+         
           //마우스 무브(mousemove) 이벤트 
           //작은 이미지($smallImg)를 마우스 움직임에 의해서 
           //상하(마우스의 수직이동) : Y(대문자사용)좌표
@@ -1044,7 +1141,7 @@
 
               //1. 선택자($smallImg) 마우스 무브(mousemove) 이벤트 
               //2. 타겟의 좌표를 가져와서 거기에서 움직임을 준다 
-              $section4.on({
+             /* $section4.on({
                 mousemove:function(event){
                   x = event.clientX*0.03;
                   y = event.clientY*0.03;
@@ -1064,13 +1161,15 @@
                   // $smallImg.stop().animate({bottom:bottom,left:left},600);
                   // $smallImg.css({marginLeft: x , marginTop: y});
                 }
-              });
+             }); */
 
 
 
         },
         section5Fn:function(){
           ///자동 타이머 
+          var $section5  = $('#section5');
+          var $section5Top  = $('#section5').offset().top-400;
           var $slideWrap  = $('#section5 .slide-wrap');
           var $slideW     = $('#section5 .slide').innerWidth();
           var $slideView = $('#section5 .slide-view');
@@ -1079,7 +1178,26 @@
           var a           = 0;
           var setId       = null;
           var setId2      = null;
+          var t = 0;
 
+          //페럴럭스
+          function scrollFn(){
+            $section5.addClass('addAni');
+          }
+
+          $(window).scroll(function(){
+            if( $(this).scrollTop() == 0){
+              t=0;              
+              $section5.removeClass('addAni');              
+            }          
+            if($(this).scrollTop() >= $section5Top ){
+              if(t == 0){
+                t=1;
+                scrollFn(); //확인 페이드인 효과
+              }  
+            }          
+          });
+        
           
           //1.메인 슬라이드 함수 
          
@@ -1402,6 +1520,8 @@
 
         },
         section8Fn:function(){
+          var $section8 = $('#section8');          
+          var $section8Top = $('#section8').offset().top-400;
           var $slideView = $('#section8 .slide-view');
           var $slideWrap = $('#section8 .slide-wrap');
           var $slide = $('#section8 .slide');
@@ -1413,6 +1533,27 @@
           var next = [2, 0, 1]; //5개인경우 [4,0,1,2,3] 10개인 경우 [9,0,1,2,3,4,5,6,7,8]
           var prev = [0, 2, 1]; //5개인경우 [0,4,3,2,1] 10개인 경우 [0,9,8,7,6,5,4,3,2,1]
           var isMouseDown  = 0;
+          var t = 0;
+
+          //페럴럭스
+          function scrollFn(){
+            $section8.addClass('addAni');
+          }
+          
+          $(window).scroll(function(){
+            if( $(this).scrollTop() == 0 ){
+              t=0;
+              $section8.removeClass('addAni');
+            }
+
+            if( $(this).scrollTop() >= $section8Top ){
+              if(t==0){
+                t=1;
+                scrollFn();
+              }
+            }
+          })
+
 
           mainSlideFn(); //cnt=1  //이름있는 함수는 어디든 호출 가능. 
      
@@ -1562,19 +1703,46 @@
         },
         section9Fn:function(){
           // left 높이 = left 박스의 너비값에 * 높이 비율 1.385597505%
-          var $ul = $('#section9 .content-wrap ul');
+          var $section9Top = $('#section9').offset().top;
+          var $ul = $('#section9 .content-wrap > ul');
+          var $Li = $('#section9 .content > ul > li ');
           var $leftW = $('#section9 .left').innerWidth();;
           var $h3 = $('#section9 .right-wrap h3');
           var $p = $('#section9 .right-wrap p');
           var $h6 = $('#section9 .right-wrap h6');
+          var t = 0;
 
           var $ulH = $leftW * 1.333798986;
           var h3Size = $leftW*0.066875715;
           var pSize  = $leftW*0.055729763;
           var h6Size  = $leftW*0.04458381;
 
+           //페럴럭스
+           function scrollFn(){
+             setTimeout(function(){
+               $Li.eq(0).addClass('addAni');
+                setTimeout(function(){
+                  $Li.eq(1).addClass('addAni');
+                  setTimeout(function(){
+                    $Li.eq(2).addClass('addAni');
+                    console.log($Li.eq(2));
+                  },200);
+                },200);
+             },200);
+           }
+           $(window).scroll(function(){
+            if ($(this).scrollTop() == 0){
+              t=0;
+              $Li.removeClass('addAni');
+            }
+             if ($(this).scrollTop() >= $section9Top){
+               if(t==0){
+                 t=1;
+                 scrollFn();
+               }
+             }
+           });
            
-
            //1.반응형 함수
            function resizeFn(){
             $leftW = $('#section9 .left').innerWidth();;
@@ -1598,29 +1766,55 @@
            setTimeout(resizeFn,100);
 
         },      
+        section10Fn:function(){
+          var $sectoin10 = $('#section10');
+          var $sectoin10Top = $('#section10').offset().top-400;
+          var t = 0;
+          //페럴럭스
+          function scrollFn(){
+            $sectoin10.addClass('addAni');
+          }
+         
+          $(window).scroll(function(){
+            if( $(this).scrollTop() == 0 ){
+              t=0;
+              $sectoin10.removeClass('addAni');
+            }
+            if( $(this).scrollTop() >= $sectoin10Top ){
+              if(t==0){
+                t=1;
+                scrollFn();
+              }
+            }
+          });
+        },
         footerFn:function(){
           //폼을 이용한 메일주소를 php(서버사이드 스크립트 언어) 비동기 전송 
           //AJAX
           var $submitBtn = $('#submitBtn');
           var $reponse = $('.reponse h3');
           var $frmEmail = $('#frmEmail'); //$가 있음으로 객체 $없으면 일반변수
+          var $msg = $('.msg-wrap'); //$가 있음으로 객체 $없으면 일반변수
+          var $inputWrap = $('.input-wrap'); //$가 있음으로 객체 $없으면 일반변수
           
 
 
           $submitBtn.on({
             click:function(event){
-              // event.preventDefault();  //전송버튼 기능 삭제              
+              event.preventDefault();  //전송버튼 기능 삭제              
 
               var frmEmailVal = $('#frmEmail').val(); //폼 입력상자 value
               var frmCodeVal = $('#frmCode').val();  //폼 입력상자 value
 
               //유효성 검사 
-              if( $frmEmail == '' ){
+              if( frmEmailVal == '' ){
                 alert('메일 주소를 입력하세요 !');
+                $inputWrap.addClass('addAjax');
                 $('#frmEmail').focus(); //입력 대기상태로 이동 포커스
                 return false; //버튼 클릭 취소
             }            
             else{
+              $inputWrap.removeClass('addAjax');
 
               //AJAX 비동기 전송 시작 
               $.ajax({
@@ -1631,9 +1825,24 @@
                     code : frmCodeVal                  
                 },
                 success: function(result){
-                  $frmEmail.val('');
+                  
+                  $inputWrap.addClass('addAjax');
                   $reponse.html(result);
-                  $frmEmail.focus();
+                 
+
+                  //성공 메시지 띄우기
+                  $msg.fadeIn(1000);
+                  setTimeout(msgFn, 6000); //fadeIn후 6초 후에 사라지도록 하긩.
+
+                  function msgFn(){
+                    $frmEmail.val('');  //화면 지우기
+                    $reponse.html(''); 
+                    //내용 지우기 = $response.empty(); 
+                    // $response.children().remove(); -remove는 태그요소만 삭제 시킨다.내용은 그대로
+                    $inputWrap.removeClass('addAjax');
+                    $msg.fadeOut(1000);
+                    $frmEmail.focus(); //다음 입력 대기 상태 전환
+                  }
 
                 },
                 error:function(msg){
@@ -1649,6 +1858,7 @@
         smoothScrollFn:function(){
           var $smoothBtn = $('.smoothBtn');
           var $goTopBtnWrap = $('.goTopBtn-wrap');
+          var $modalDemo = $('#modalDemo');
           var t = 0; //토글 변수 
 
           $smoothBtn.on({
@@ -1659,6 +1869,21 @@
             }
           });
 
+          //창너비가 1200초과이면 모달창 보이고
+          //아니면 안보인다. 
+          function resizeFn(){
+            if( $(window).innerWidth()>1200 ){
+              $modalDemo.stop().fadeIn(1000);
+            }
+            else{
+              $modalDemo.stop().fadeOut(1000);
+            }         
+          }
+          setTimeout(resizeFn,100);
+          $(window).resize(function(){
+            resizeFn(); //모달창 반응형 실행..
+          });
+
           //최상단에서 100픽셀이상 아래로 스크롤 하면 
           //goTop 메뉴가 보이고 
           //맨위로 올라가면 안보인다. 
@@ -1666,7 +1891,8 @@
             if( $(window).scrollTop() >= 100 ){
               if( t==0){ //버블링 방지
                 t=1; //설정 안해주면 계속 실행됨
-                $goTopBtnWrap.stop().fadeIn(1000);
+                $goTopBtnWrap.stop().fadeIn(1000);   
+                resizeFn();           
               }             
             }
             else{
@@ -1679,8 +1905,63 @@
 
         },
         demoModalFn:function(){
-          //모달창 사용 HTML overflow 감추기 데모사이트를 슬라이딩 우측에서 부드럽게 
-          //슬라이딩 방식의 스크립트 애니메이션 제작 
+          //.modal-btn 버튼을 클릭하면 
+          //html 스크롤을 삭제하고 .addModal 클래스를 추가한다.(addClass)
+          //header 헤더를 위로 올려서 숨긴다. addClass('addHide)
+          //#modalDemo 데모 모달창을 우측에서 좌측으로 부드럽게 슬라이딩 애니메이션 효과 
+          var $html = $('html');
+          var $header = $('#header');
+          var $modalDemo = $('#modalDemo');
+          var $modalBtn = $('.modal-btn');
+          var $document = $(document);
+
+          //target : 마우스 및 키보드 등 버튼 이벤트의 대상(target)
+          $modalBtn.on({
+            click:function(event){
+
+              //클릭 대상을 클릭한 상태에서 발생되는
+              //자신(현재의 타겟)의 이벤트 대상을 말한다.
+              event.currentTarget
+              
+              //모달 열기/닫기 버튼을 클릭시 부모에게로 전파되는 버튼 이벤트를 차단한다. 
+              event.stopPropagation(); //부모인 도큐먼트에 전파 못하게 해줌.결국엔 내가 동작하려는 이곳에만 실행하겠다.
+              // console.log(e.currentTarget.nodeName);
+              $html.toggleClass('addModal');
+              $header.toggleClass('addHide');
+              $modalDemo.toggleClass('addModal');            
+            }
+          });
+
+          // 모달창 전체 이벤트 
+          $modalDemo.on({
+            click:function(event){  //event 걸어놓으면 타깃이된다.
+              event.stopPropagation();
+              return false;
+
+            }
+          });
+           //도큐먼트를 클릭대상으로 선택한 이유는
+          //웹문서의 전체 클릭 대상으로 선택자 선택
+          //위의 클릭 이벤트 대상이 아닌 이벤트를 찾기 위해서. 
+          $document.on({
+            click:function(event){
+              
+              //닫고자하는 모달창 버튼은 토글기능. 한번은 열고, 한번은 닫는다.
+              //모든 클릭대상은 모달창을 닫게 해준다.
+              //그래서 버튼 이벤트의 타겟과 현재 클릭한 이벤트 타겟이 다르면
+              //창을 닫는다. 
+              //클릭하고자 하는 버튼이 아닌 다른것을 클릭하면
+              //모달창을 닫는다.
+              //위에 클릭 이벤트 대상이 아닌 모든것이 해당된다.
+              if(event.target !== event.currentTarget){  //모달 버튼에 이벤트가 달려있기 때문에 이벤트 타깃이 된다.
+                //위에 클릭 이벤트 대상이 아닌 모든것이 해당된다.
+                $html.removeClass('addModal');
+                $header.removeClass('addHide');
+                $modalDemo.removeClass('addModal');   
+              }
+            }
+          });
+
         }
     } //객체 끝
 

@@ -29,6 +29,8 @@
     #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content h2  {font-size:22.2px;}
     #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div  {padding-top:40px;}
     #wrap #main #section7 .wrap .gap .container .content ul li .content-gap .content-wrap .title-wrap .title-gap .title-content div p   {line-height: 160%;}
+
+   
 }
 @media all and (max-width:1040px){
     #wrap #main #section8 .wrap .gap .container .content .left{width:33.3333333%;}  /*440px*/

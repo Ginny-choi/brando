@@ -493,7 +493,7 @@
                 <div class="gap">
                     <div class="container">
                         <ul class="clearfix">
-                            <li>
+                            <li> <!-- 1칸 -->
                                 <div class="content-gap">
                                     <div class="content">
                                         <h2>
@@ -509,7 +509,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li> <!-- 2칸 -->
                                 <div class="content-gap">
                                     <div class="content">
                                        <h3>
@@ -524,7 +524,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
+                            <li> <!-- 3칸 -->
                                 <div class="content-gap">
                                     <div class="content">
                                         <div class="img-box">
@@ -785,6 +785,10 @@
             <div class="wrap">
                 <div class="gap">
                     <div class="container">
+                        <div class="title">
+                            <h3>INTERIOR DESIGN</h3>
+                            <h2>LATEST PROJECTS</h2>
+                        </div>
                         <div class="slide-container">
                             <div class="slide-view">
                                 <ul class="slide-wrap clearfix">
@@ -1943,7 +1947,7 @@
                                             <form name="mailSendForm" id="mailSendForm" method="" action="response.php">
                                                 <div class="input-wrap"> <!-- 입력상자는 반드시 블록요소로 감싸야된다. -->
                                                     <input type="email" name="frmEmail" id="frmEmail" value="" placeholder="Enter your email address"> 
-                                                    <input type="hidden" name="code" id="code" value="code$"> <!-- 눈에 보이지 않는 코드 번호를 보낼 때 필요 -->
+                                                    <input type="hidden" name="frmcode" id="frmcode" value="code$"> <!-- 눈에 보이지 않는 코드 번호를 보낼 때 필요 -->
                                                 </div>
                                                 <div class="button-wrap">
                                                     <!-- <input type="submit" name="subnitBtn"  id="submitBtn" value="전송"> -->
@@ -1951,7 +1955,18 @@
                                                 </div>
                                               
                                             </form>
-                                        </div>                                   
+                                        </div>  
+                                        <div class="reponse">
+                                            <br><br>
+                                            <h3><!-- 무야호임 --></h3>
+                                            <div class="success-msg">
+                                                <div class="msg-wrap">
+                                                    <div class="msg-gap">
+                                                        Your message has been sent successfully subscribed to our email list!
+                                                    </div> 
+                                                </div>                                                
+                                            </div>
+                                        </div>                                 
                                     </div>
                                 </div>
                             </li>
@@ -1980,11 +1995,7 @@
     <div class="goTopBtn-wrap">
         <a href="#wrap" class="smoothBtn"><i class="fas fa-arrow-up"></i></a>
     </div>
-      <!-- modalDemo -->
-      <!-- modal position:fixed 4(z) width 655 hegiht 100% -->
-      <!-- modal gap padding 40 25 -->
-      <!-- close button 59*54 -->
-
+     
     <div id="modalDemo">
         <div class="wrap">
             <div class="gap">
@@ -2042,7 +2053,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="button-wrap addModal">
+                    <div class="button-wrap">
                         <a href="javascript:" class="modal-btn">
                             <span class="close"><i class="fas fa-times"></i></span>
                             <span class="group"><i class="far fa-clone"></i><span>36+ DEMOS</span></span>
